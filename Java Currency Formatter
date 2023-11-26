@@ -1,0 +1,33 @@
+import java.util.*;
+import java.text.*;
+
+public class Solution {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double payment = scanner.nextDouble();
+        scanner.close();
+        
+        // Write your code here.
+        NumberFormat usFormat = NumberFormat.getCurrencyInstance(Locale.US);
+        NumberFormat indiaFormat = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+        NumberFormat chinaFormat = NumberFormat.getCurrencyInstance(Locale.CHINA);
+        NumberFormat franceFormat = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+
+        // Format the payment for each Locale
+        String usFormatted = usFormat.format(payment);
+        String indiaFormatted = indiaFormat.format(payment);
+        String chinaFormatted = chinaFormat.format(payment);
+        String franceFormatted = franceFormat.format(payment);
+
+        // Remove the currency symbol and replace it with "Rs." for India
+        indiaFormatted = indiaFormatted.substring(indiaFormatted.indexOf('\u20B9') + 1);
+        chinaFormatted =chinaFormatted.substring(chinaFormatted.indexOf('\u00A5') + 1);
+
+        // Print the formatted values
+        System.out.println("US: " + usFormatted);
+        System.out.println("India: " + indiaFormatted);
+        System.out.println("China: " + chinaFormatted);
+        System.out.println("France: " + franceFormatted);
+    }
+}
